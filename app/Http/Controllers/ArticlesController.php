@@ -106,7 +106,7 @@ class ArticlesController extends Controller
     }
 
      /**
-     * Show the form for editing the specified resource.
+     * show the detail page
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
