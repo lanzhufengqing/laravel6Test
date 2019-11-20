@@ -130,7 +130,8 @@ class ArticlesController extends Controller
     public function test()
     {
         // update on git branch dev
-        // on branch dev1 very very good
+        // on branch dev1 vevy good
+
         return 'testaaaa';
 
         return view('articles.create');
