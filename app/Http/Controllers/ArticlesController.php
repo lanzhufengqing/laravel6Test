@@ -113,7 +113,7 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        //test reset
+        //test reset111
         $article = Article::findOrFail($id);
         return view('articles.show', compact('article'));
     }
