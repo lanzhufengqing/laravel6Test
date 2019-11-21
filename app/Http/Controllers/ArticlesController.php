@@ -144,5 +144,6 @@ class ArticlesController extends Controller
      */
     public function newtest(){
         //我正在分支dev1开发新功能3
+        //修改1
     }
 }
