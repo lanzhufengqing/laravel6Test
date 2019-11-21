@@ -132,8 +132,16 @@ class ArticlesController extends Controller
         // update on git branch dev
         // on branch dev1 vevy good
         //fix bug 101
+        // study git stash
         return 'testaaaa';
-
         return view('articles.create');
+    }
+
+    /**
+     * [newtest description]
+     * @return [type] [description]
+     */
+    public function newtest(){
+        //我正在分支dev1开发新功能
     }
 }
