@@ -133,7 +133,7 @@ class ArticlesController extends Controller
         // on branch dev1 vevy good
         //fix bug 103
         // study git stash
-        // 在分支dev上开发新功能2
+        // 在分支dev上开发新功能3
         return 'testaaaa';
         return view('articles.create');
     }
@@ -143,6 +143,6 @@ class ArticlesController extends Controller
      * @return [type] [description]
      */
     public function newtest(){
-        //我正在分支dev1开发新功能2
+        //我正在分支dev1开发新功能3
     }
 }
