@@ -131,8 +131,7 @@ class ArticlesController extends Controller
     {
         // update on git branch dev
         // on branch dev1 vevy good
-        //fix bug 101
-        // study git stash
+        //fix bug 101 102
         return 'testaaaa';
         return view('articles.create');
     }
