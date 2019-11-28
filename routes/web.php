@@ -29,4 +29,5 @@ Route::patch('/articles/{id}', 'ArticlesController@update')->name('articles.upda
 Route::delete('/articles/{id}', 'ArticlesController@destroy')->name('articles.destroy'); //删除操作
 */
 
-Route::get('/test/{param1}/{param2}', 'TestController@index');
+//Route::get('/test/{param1}/{param2}', 'TestController@index');
+Route::get('/test', 'TestController@index');

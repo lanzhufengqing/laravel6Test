@@ -9,10 +9,18 @@ use App\Http\Controllers\Controller;
 
 class TestController extends Controller
 {
-    public function index(Request $request,$arg2,$arg1){
+    /*public function index(Request $request,$arg2,$arg1){
         echo $arg2;
         echo $arg1;
+    }*/
+
+    public function index(){
+    	$a = "a"; echo $a; //exit;
+    	$a = "aabbzz";
+    	$a++;
+    	echo $a;
+    	//exit;
     }
 
-	
+
 }
