@@ -11,13 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//微博 路由
+Route::get('/', 'StaticPagesController@home');
+Route::get('/help', 'StaticPagesController@help');
+Route::get('/about', 'StaticPagesController@about');
+
+
 Route::get('/hello', function () {
     return "hello world";
 });
-//resource 
+//resource
 Route::resource('articles', 'ArticlesController');
 
 /*Route::get('/articles', 'ArticlesController@index')->name('articles.index'); //列表页
