@@ -1,3 +1,7 @@
-1.章节4.3Laravel 前端工作流
+问题1 章节4.3Laravel 前端工作流
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 手动复制？ public/mix-manifest.json
+
+问题2  database.php 和 .env 文件都需要配置吗？
+问题3  {{ method_field('PATCH') }}，这是跨站方法伪造
+问题4 为什么开启了debug，页面上不显示错误提示

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class StaticPagesController extends Controller
 {
     public function home(){
+        //phpinfo();
         return  view('static_pages/home');
     }
 
