@@ -61,11 +61,15 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
-         return view('users.edit', compact('user'));
+        //注册授权，验证当前登录用户不能修改访问其他用户的编辑资料页面，提示403权限不足
+        $this->authorize('update', $user);
+        return view('users.edit', compact('user'));
     }
 
     public function update(User $user,Request $request)
     {
+        //注册授权，验证当前登录用户不能提交其他用户的修改资料
+        $this->authorize('update', $user);
         $this->validate($request, [
             'name' => 'required|max:50',
             'password' => 'nullable|confirmed|min:6'
