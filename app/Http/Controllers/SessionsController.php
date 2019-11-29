@@ -9,6 +9,15 @@ use Auth;
 
 class SessionsController extends Controller
 {
+
+    public function __construct()
+    {
+        //guest 只允许游客（未登录）用户访问登录页面
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     //用户登录页
     public function create()
     {
@@ -29,7 +38,11 @@ class SessionsController extends Controller
         //登录时选中记住我，选中后记住五年
         if (Auth::attempt($credentials,$request->has('remember'))) {
            session()->flash('success', '欢迎回来！');
-           return redirect()->route('users.show', [Auth::user()]);
+           //$fallback = route('users.show', [Auth::user()]);
+           //登录成功后跳转到上次尝试打开页面，没有的话默认跳转到users.show
+           $fallback = route('users.show', Auth::user());
+           return redirect()->intended($fallback);
+
        } else {
            session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
            return redirect()->back()->withInput();

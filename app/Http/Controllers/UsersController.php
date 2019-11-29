@@ -8,7 +8,19 @@ use Auth;
 
 class UsersController extends Controller
 {
-    //
+    public function __construct()
+    {
+        // except 除了这些操作，其他操作必须登录用户才能访问
+        $this->middleware('auth',[
+            'except' => ['show','create','store']
+            ]);
+        //只允许未登录用户访问注册页面
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
+    //注册页面
     public function create()
     {
         return view('users.create');
@@ -20,6 +32,11 @@ class UsersController extends Controller
         return view('users.show',compact('user'));
     }
 
+    /**
+     * 用户注册进库，并自动登录
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function store(Request $request)
     {
         $this->validate($request,[
