@@ -3,7 +3,13 @@
 手动复制？ public/mix-manifest.json
 
 问题2  database.php 和 .env 文件都需要配置吗？
+
 问题3  {{ method_field('PATCH') }}，这是跨站方法伪造
 {{ csrf_field() }} 等于
 <input type="hidden" name="_token" value="fhcxqT67dNowMoWsAHGGPJOAWJn8x5R5ctSwZrAq">
+
 问题4 为什么开启了debug，页面上不显示错误提示
+
+问题5 php artisan tinker
+
+
