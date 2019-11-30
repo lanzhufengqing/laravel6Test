@@ -19,3 +19,5 @@ $ php artisan db:seed --class=UsersTableSeeder
 问题7 迁移文件字段类型说明
 https://blog.csdn.net/qq_25290835/article/details/86704086
 
+问题8 发送邮件调试
+.env 文件中MAIL_DRIVER=smtp 改为 MAIL_DRIVER=log

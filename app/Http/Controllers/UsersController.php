@@ -1,18 +1,21 @@
 <?php
-
+/**
+ * 用户注册、用户列表
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Auth;
+use Auth; //用户认证 授权
+use Mail; //发邮件
 
 class UsersController extends Controller
 {
     public function __construct()
     {
-        // except 除了这些操作，其他操作必须登录用户才能访问
+        // except 除了这些操作，其他操作必须登录用户才能访问,也就是未登录时可以访问的操作
         $this->middleware('auth',[
-            'except' => ['show','create','store','index']
+            'except' => ['show','create','store','index','confirmEmail']
             ]);
         //只允许未登录用户访问注册页面
         $this->middleware('guest', [
@@ -52,10 +55,12 @@ class UsersController extends Controller
             'password' =>bcrypt($request->password),
         ]);
 
-        //注册后自动登录
-        Auth::login($user);
-        session()->flash('success','欢迎，您将在这里开启一段新的旅程~');
-        return redirect()->route('users.show',[$user]);
+        //注册后自动登录改为邮箱激活才能登录
+        //Auth::login($user);
+        $this->sendEmailConfirmationTo($user);
+        session()->flash('success','验证邮件已发送到您的注册邮箱上，请注意查收。');
+        return redirect('/');
+        //return redirect()->route('users.show',[$user]);
     }
 
 
@@ -109,6 +114,38 @@ class UsersController extends Controller
         session()->flash('success','成功删除用户');
         // 刷新当前页面
         return back();
+    }
+
+    /**
+     * 发送邮箱
+     * @param  [type] $user [description]
+     * @return [type]       [description]
+     */
+    protected function sendEmailConfirmationTo($user)
+    {
+        $view = 'emails.confirm';
+        $data = compact('user');
+        $from = 'lanzhufengqing@126.com';
+        $name = 'guowh';
+        $to = $user->email;
+        $subject = "感谢注册 Weibo 应用！请确认你的邮箱。";
+
+        Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
+            $message->from($from, $name)->to($to)->subject($subject);
+        });
+    }
+
+    public function confirmEmail($token)
+    {
+        $user = User::where('activation_token',$token)->firstOrFail(); //查询不到时返回404
+
+        $user->activated = true;
+        $user->activation_token = null;
+        $user->save();
+
+        Auth::login($user);
+        session()->flash('success','恭喜您，激活成功！');
+        return redirect()->route('users.show',[$user]);
     }
 
 
