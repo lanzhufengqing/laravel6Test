@@ -12,4 +12,7 @@
 
 问题5 php artisan tinker
 
+问题6 数据填充
+$ php artisan migrate:refresh //这条时重置数据表 ，按照migrations回滚，不要用这条命令
+$ php artisan db:seed --class=UsersTableSeeder
 

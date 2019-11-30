@@ -12,7 +12,7 @@ class UsersController extends Controller
     {
         // except 除了这些操作，其他操作必须登录用户才能访问
         $this->middleware('auth',[
-            'except' => ['show','create','store']
+            'except' => ['show','create','store','index']
             ]);
         //只允许未登录用户访问注册页面
         $this->middleware('guest', [
@@ -85,6 +85,19 @@ class UsersController extends Controller
 
         return redirect()->route('users.show',$user);
         //return redirect()->route('users.show',$user->id); 同上一行
+    }
+
+
+    /**
+     * 用户列表页
+     * @return [type] [description]
+     */
+    public function index()
+    {
+        //取出全部用户
+        //$users = User::all();
+        $users =User::paginate(10); //分页取数据 每页10条
+        return view('users.index',compact('users'));
     }
 
 
