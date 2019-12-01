@@ -125,13 +125,15 @@ class UsersController extends Controller
     {
         $view = 'emails.confirm';
         $data = compact('user');
-        $from = 'lanzhufengqing@126.com';
-        $name = 'guowh';
+        //$from $name 是本地调试使用
+        // $from = 'lanzhufengqing@126.com';
+        // $name = 'guowh';
         $to = $user->email;
         $subject = "感谢注册 Weibo 应用！请确认你的邮箱。";
 
         Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
-            $message->from($from, $name)->to($to)->subject($subject);
+            // $message->from($from, $name)->to($to)->subject($subject);
+            $message->to($to)->subject($subject);//$from $name的配置值在.env文件中
         });
     }
 
