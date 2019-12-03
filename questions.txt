@@ -14,7 +14,7 @@
 
 问题6 数据填充
 $ php artisan migrate:refresh //这条时重置数据表 ，按照migrations回滚，不要用这条命令
-$ php artisan db:seed --class=UsersTableSeeder
+$ php artisan db:seed --class=UsersTableSeeder //只填充users表
 
 问题7 迁移文件字段类型说明
 https://blog.csdn.net/qq_25290835/article/details/86704086

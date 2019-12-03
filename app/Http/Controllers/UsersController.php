@@ -29,10 +29,18 @@ class UsersController extends Controller
         return view('users.create');
     }
 
+    /**
+     * 用户详情页
+     * @param  User   $user [description]
+     * @return [type]       [description]
+     */
     public function show(User $user)
     {
-
-        return view('users.show',compact('user'));
+        // 获取该用户的微博列表
+        $statuses = $user->statuses()
+                            ->orderBy('created_at','desc')
+                            ->paginate(10);
+        return view('users.show',compact('user','statuses'));
     }
 
     /**

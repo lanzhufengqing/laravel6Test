@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Statue extends Model
+class Status extends Model
 {
     /**
      * 该方法指明一条微博属于一个用户，函数名单数
@@ -17,3 +17,4 @@ class Statue extends Model
         return $this->belongsTo(User::class);
     }
 }
+
